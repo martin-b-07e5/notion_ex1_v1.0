@@ -1,23 +1,22 @@
+# api_key_utils.py
+
 import configparser
 import pathlib
-
 
 def api_key_utils():
 
     # https://www.pythonanywhere.com/forums/topic/30771/#id_post_100134
-    config_path = pathlib.Path(__file__).parent.absolute() / "config.ini"
-    
-    # Crea un objeto ConfigParser
-    config = configparser.ConfigParser()
-    # Lee el archivo de configuración
-    # config.read('config.ini')
-    config.read(config_path)
+    # Using pathlib to find the absolute path to my app and append "config.ini"
+    #  to the end. This way it works locally and remote.
+    # config_path = pathlib.Path(__file__).parent.absolute() / "config.ini"
 
-    # Obtén los valores de latitud, longitud y clave API del archivo de configuración config.ini
-    # lat = config.getfloat('WeatherAPI', 'lat')
-    # lon = config.getfloat('WeatherAPI', 'lon')
+    # Creates a ConfigParser object.
+    config = configparser.ConfigParser()
+    # Read the configuration file.
+    config.read('config.ini')
+    # config.read(config_path)
+
+    # Get API key from config.ini configuration file.
     api_key = config.get('WeatherAPI', 'api_key')
 
-    # Devuelve los valores
-    # return lat, lon, api_key
     return api_key
